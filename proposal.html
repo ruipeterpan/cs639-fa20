@@ -28,6 +28,36 @@
       }
       /*html, body { scroll-behavior:smooth; }*/
       /* Conflicts with "collapse nav bar on click" */
+      ul.timeline {
+          list-style-type: none;
+          position: relative;
+      }
+      ul.timeline:before {
+          content: ' ';
+          background: #d4d9df;
+          display: inline-block;
+          position: absolute;
+          left: 29px;
+          width: 2px;
+          height: 100%;
+          z-index: 400;
+      }
+      ul.timeline > li {
+          margin: 20px 0;
+          padding-left: 20px;
+      }
+      ul.timeline > li:before {
+          content: ' ';
+          background: white;
+          display: inline-block;
+          position: absolute;
+          border-radius: 50%;
+          border: 3px solid #22c0e8;
+          left: 20px;
+          width: 20px;
+          height: 20px;
+          z-index: 400;
+      }
     </style>
 
     <!-- Favicon -->
@@ -56,14 +86,24 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#abstract">Abstract</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="#">Section 1</a>
+            <a class="nav-link" href="#problem">Problem</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="#">Section 2</a>
+            <a class="nav-link" href="#motivation">Motivation</a>
           </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#stateoftheart">Current State of the Art</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#evaluations">Evaluations</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#timeline">Timeline</a>
+          </li>
+
         </ul>
       </div>
     </nav>
@@ -71,16 +111,113 @@
     <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="jumbotron-heading display-4">Project Proposal</h1>
-        <p class="lead">deadass fuck thots on god</p>
+        <h1 class="jumbotron-heading display-4 text-center">Project Proposal</h1>
+        <p class="lead text-center">Group members: <a href="https://hashiyaa.github.io" target="_blank">Haochen Shi</a>, Chenhao Lu, <a href="https://ruipeterpan.github.io/" target="_blank">Rui Pan</a></p>
+        <p class="lead text-center">{hshi74, clu92, rpan33}@wisc.edu</p>
       </div>
     </div>
 
-    <!-- About -->
-    <div class="container">
+    <!-- Problem -->
+    <div class="container mt-5 mb-5">
       <div class="row">
         <div class="col-sm-12">
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
+          <a id="problem" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Problem</h1>
+          <p>
+            The problem that we are trying to solve is to add a vision plugin into a real-time robot motion synthesis framework so that a feasible and accurate motion plan can be generated for robots to do tasks that require visual information from the environment. 
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Motivation -->
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
+          <a id="motivation" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Motivation</h1>
+          <p>
+            A camera robot will have the ability to do a wider range of tasks with this plugin. For example, the robot manipulator will be able to “look” at the environment with a camera in hand to potentially achieve some objective, such as taking a perfectly stable panoramic picture, seeing around obstacles, and tracking a moving object. One of our group members has been working on an optimization-based motion planning framework named Relaxed IK in our school's robotics lab. To achieve smooth and feasible motions that avoid joint-space discontinuities, self-collision, and kinematic singularities, Relaxed IK casts the standard inverse kinematics formulation into a multi-objective non-linear optimization problem. A task that requires visual information from the environment can be encoded as one of these objectives in this optimization problem such that Relaxed IK is able to effectively make trade-offs to simultaneously reconcile this visual objective and many other potentially competing objectives.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Current State of the Art -->
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
+          <a id="stateoftheart" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Current State of the Art</h1>
+          <p>
+            In terms of applications of Relaxed IK, the current state of the art is to adapt the viewpoint of the robot arm in visually complex environments. It improves the ability of remote users to teleoperate a manipulation robot arm by continuously providing them with an effective viewpoint using a second camera in-hand robot arm. In terms of vision plugins in robot motion planning, there are many methods that control the robot arm to precisely track (and even grasp) a moving object in the environment, however, most of them don't have the ability to reconcile many potentially competing objectives in real-time. For example, in the case of tracking a moving object, if the robot manipulator is operating in a clustered environment or this object is in a trajectory that is going to collide with the robot, these methods will probably fail to avoid the collision, while Relaxed IK is able to effectively detect the collision and plan around the object with its obstacle avoiding objective. If successfully implemented, our vision plugin will be a new approach in the sense of reconciling visual information in the environment as an objective in the optimization problem with other objectives such as end effector position/orientation goal matching, minimum-jerk joint motion, and distance from collision state.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Evaluations -->
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
+          <a id="evaluations" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Evaluations</h1>
+          <p>
+            We will evaluate the performance both empirically and analytically. For the empirical part, we will design a set of interesting scenarios for testing. For example, we will have the camera in-hand robot  tracking a moving object in a clustered environment to show that it is able to deal with multiple objectives (avoiding collision and tracking the moving object) at the same time. We can also ask the camera in-hand robot to take a panoramic picture of the environment around and see how good the picture is. For the analytical part, we will collect statistics such as average joint velocity, average joint acceleration, and average joint jerk from the joint trajectory returned by relaxed IK and examine how smooth the planned motion is. Another direction to look into is possibly to compare our approach with other available methods of tracking a moving object for the robot arm and analyze its effectiveness based on the comparison.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-md-12">
+          <a id="timeline" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Timeline</h1>
+          <ul class="timeline">
+            <li>
+              <a target="_blank" href="https://www.totoprayogo.com/#">Get familiarized</a>
+              <a href="#" class="float-right">Oct 15, 2020</a>
+              <p>Get familiar with available packages of doing 3D vision, optical flow and motion measurement.</p>
+            </li>
+            <li>
+              <a href="#">Implementation</a>
+              <a href="#" class="float-right">Nov 1, 2020</a>
+              <p>Implement a method to detect and identify static and dynamic objects in the environment.</p>
+            </li>
+            <li>
+              <a href="#">Integration into Relaxed IK</a>
+              <a href="#" class="float-right">Nov 15, 2020</a>
+              <p>Integrate this method into Relaxed IK and make it compatible with other objectives of Relaxed IK.</p>
+            </li>
+            <li>
+              <a href="#">Test Scenarios Design</a>
+              <a href="#" class="float-right">Dec 1, 2020</a>
+              <p>Design some interesting scenarios to test the vision plugin both empirically and analytically</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=F2TBlxWbs3r0SJixlLgyMRNaIqkp9peGGOY8alVvCD0&cl=ffffff&w=a"></script>
+          <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=f5f5f5&w=300&t=tt&d=F2TBlxWbs3r0SJixlLgyMRNaIqkp9peGGOY8alVvCD0&co=4194cf&ct=ffffff&cmo=ff0000&cmn=3dde3d'></script>
+        </div>
+      </div>
+    </div>
+
+        <!-- Misc -->
+<!--     <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
           <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Introduction</h1>
           <p>
@@ -145,17 +282,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-
-<!--     <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <h1>Visitor Map</h1>
-          <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=F2TBlxWbs3r0SJixlLgyMRNaIqkp9peGGOY8alVvCD0&cl=ffffff&w=a"></script>
-          <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=f5f5f5&w=300&t=tt&d=F2TBlxWbs3r0SJixlLgyMRNaIqkp9peGGOY8alVvCD0&co=4194cf&ct=ffffff&cmo=ff0000&cmn=3dde3d'></script>
-        </div>
-      </div>
     </div> -->
 
     <!-- Contacts -->
@@ -165,22 +291,8 @@
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
           <a id="contacts" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Contacts</h1>
-<!--           <p><a href="mailto:rpan33@wisc.edu" target="_blank">rpan33@wisc.edu</a></p>
-          <p><a href="sms:+16089600303">(+1) 608-960-0303</a> (US) <a href="sms:+8613564799996">(+86) 135-647-99996</a> (CN)</p>
-          <a href="mailto:rpan33@wisc.edu" class="smlinks"><i class="fas fa-envelope-square fa-2x"></i></a>
-          <a href="https://www.linkedin.com/in/ruipeterpan/"  class="smlinks" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-          <a href="https://github.com/ruipeterpan" class="smlinks" target="_blank"><i class="fab fa-github-square fa-2x"></i></a>
-          <a href="https://www.facebook.com/rui.pan.1044" class="smlinks" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-          <a href="https://twitter.com/ruipeterpan" class="smlinks" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
-          <a href="https://www.instagram.com/ruipeterpan/" class="smlinks" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-          <a href="https://www.snapchat.com/add/peterpan0726" class="smlinks" target="_blank"><i class="fab fa-snapchat-square fa-2x"></i></a> -->
-          <!-- TODO: 调用微信内置浏览器打开这个链接 -->
-<!--           <a href="https://u.wechat.com/EEVm_3AGp_hr3O22zRLFQO8" class="smlinks" target="_blank"><i class="fab fa-weixin fa-2x"></i></a>
-          <a href="sms:+16089600303" class="smlinks" target="_blank"><i class="fas fa-comment fa-2x"></i></a> -->
         </div>
       </div>
-<!--       <p>Designed and built by Rui Pan. Powered by Bootstrap.</p>
-      <p>Currently v2.0. Code licensed MIT. Feel free to fork this repo as a template!</p> -->
     </div>
 
     <!-- Optional JavaScript -->
