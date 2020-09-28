@@ -92,6 +92,9 @@
             <a class="nav-link" href="#problem">Problem</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#background">Background</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
             <a class="nav-link" href="#motivation">Motivation</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
@@ -103,7 +106,6 @@
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
             <a class="nav-link" href="#timeline">Timeline</a>
           </li>
-
         </ul>
       </div>
     </nav>
@@ -125,8 +127,31 @@
           <a id="problem" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Problem</h1>
           <p>
-            The problem that we are trying to solve is to add a vision plugin into a real-time robot motion synthesis framework so that a feasible and accurate motion plan can be generated for robots to do tasks that require visual information from the environment. 
+            Our goal is to integrate a vision plug-in into a real-time robot motion synthesis framework so that feasible and accurate motion plans can be generated for robots to work on tasks that require visual information of the environment.
           </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background -->
+    <div class="container mt-5 mb-5">
+      <div class="row">
+        <div class="col-sm-12">
+          <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
+          <a id="background" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Background</h1>
+          <p>
+            One of our group members, Haochen, has been working with an optimization-based motion planning framework named Relaxed IK (Inverse Kinematics) in our department's robotics lab. The camera in-hand robot driven by Relaxed IK is able to adapt its viewpoint in visually complex environments. It improves the ability of remote users to teleoperate a manipulation robot arm by continuously providing the users with an effective viewpoint using a second camera in-hand robot arm.           
+          </p>
+          
+          <div class="card mb-3">
+            <img src="./assets/images/teleoperation.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Daniel Rakita, Bilge Mutlu, and Michael Gleicher. 2018. An Autonomous Dynamic Camera Method for Effective Remote Teleoperation. In Proceedings of the 2018 ACM/IEEE International Conference on Human-Robot Interaction (HRI '18).</small></p>
+              <a href="http://www.roboticsproceedings.org/rss15/p68.pdf"><button type="button" class="btn btn-outline-primary btn-sm">Link to Paper</button></a>
+              <a href="https://www.youtube.com/watch?v=2JyNU2O5onc"><button type="button" class="btn btn-outline-primary btn-sm">Link to Video Presentation</button></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -139,7 +164,7 @@
           <a id="motivation" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Motivation</h1>
           <p>
-            A camera robot will have the ability to do a wider range of tasks with this plugin. For example, the robot manipulator will be able to “look” at the environment with a camera in hand to potentially achieve some objective, such as taking a perfectly stable panoramic picture, seeing around obstacles, and tracking a moving object. One of our group members has been working on an optimization-based motion planning framework named Relaxed IK in our school's robotics lab. To achieve smooth and feasible motions that avoid joint-space discontinuities, self-collision, and kinematic singularities, Relaxed IK casts the standard inverse kinematics formulation into a multi-objective non-linear optimization problem. A task that requires visual information from the environment can be encoded as one of these objectives in this optimization problem such that Relaxed IK is able to effectively make trade-offs to simultaneously reconcile this visual objective and many other potentially competing objectives.
+            With our vision plugin, a camera in-hand robot will be able to work on a wider range of tasks currently incapable of. For example, the robot manipulator will be able to “look” at the environment with a camera in hand to potentially achieve some objective, such as taking a perfectly stable panoramic picture, seeing around obstacles, and tracking a moving object.  To achieve smooth and feasible motions that avoid joint-space discontinuities, self-collision, and kinematic singularities, Relaxed IK casts the standard inverse kinematics formulation into a multi-objective nonlinear optimization problem. A task that requires visual information from the environment can be encoded as one of the aforementioned objectives in this optimization problem. Relaxed IK will be able to effectively make trade-offs and simultaneously reconcile this visual information objective and many other potentially competing objectives.
           </p>
         </div>
       </div>
@@ -151,9 +176,9 @@
         <div class="col-sm-12">
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
           <a id="stateoftheart" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
-          <h1>Current State of the Art</h1>
+          <h1>State of the Art</h1>
           <p>
-            In terms of applications of Relaxed IK, the current state of the art is to adapt the viewpoint of the robot arm in visually complex environments. It improves the ability of remote users to teleoperate a manipulation robot arm by continuously providing them with an effective viewpoint using a second camera in-hand robot arm. In terms of vision plugins in robot motion planning, there are many methods that control the robot arm to precisely track (and even grasp) a moving object in the environment, however, most of them don't have the ability to reconcile many potentially competing objectives in real-time. For example, in the case of tracking a moving object, if the robot manipulator is operating in a clustered environment or this object is in a trajectory that is going to collide with the robot, these methods will probably fail to avoid the collision, while Relaxed IK is able to effectively detect the collision and plan around the object with its obstacle avoiding objective. If successfully implemented, our vision plugin will be a new approach in the sense of reconciling visual information in the environment as an objective in the optimization problem with other objectives such as end effector position/orientation goal matching, minimum-jerk joint motion, and distance from collision state.
+            There exist many methods that control the robot arm to track and grasp a moving object in the environment precisely. However, most of the existing methods don't have the ability to reconcile many potentially competing objectives in real-time. For example, in the case of tracking a moving object, if the robot manipulator is working in a clustered environment or this object is in a trajectory that is going to collide with the robot, these methods will probably fail to avoid the collision, while Relaxed IK will be able to effectively detect the collision and plan around the object with its obstacle-avoiding objective. If successfully implemented, our vision plugin will be a new approach in the sense of reconciling visual information in the environment as an objective in the optimization problem with other objectives such as end effector position/orientation goal matching, minimum-jerk joint motion, and distance from collision states.
           </p>
         </div>
       </div>
@@ -167,7 +192,7 @@
           <a id="evaluations" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Evaluations</h1>
           <p>
-            We will evaluate the performance both empirically and analytically. For the empirical part, we will design a set of interesting scenarios for testing. For example, we will have the camera in-hand robot  tracking a moving object in a clustered environment to show that it is able to deal with multiple objectives (avoiding collision and tracking the moving object) at the same time. We can also ask the camera in-hand robot to take a panoramic picture of the environment around and see how good the picture is. For the analytical part, we will collect statistics such as average joint velocity, average joint acceleration, and average joint jerk from the joint trajectory returned by relaxed IK and examine how smooth the planned motion is. Another direction to look into is possibly to compare our approach with other available methods of tracking a moving object for the robot arm and analyze its effectiveness based on the comparison.
+            We will evaluate the performance both empirically and analytically. For the empirical part, we will design a set of interesting scenarios for testing. For example, we will have the camera in-hand robot track a moving object in a clustered environment to show that it is able to deal with multiple objectives (avoiding collision and tracking the moving object) at the same time. We will also ask the camera in-hand robot to take a panoramic picture of the environment around and see how good the picture is. For the analytical part, we will collect statistics such as average joint velocity, average joint acceleration, and average joint jerk from the joint trajectory returned by relaxed IK and examine how smooth the planned motion is. Another direction to look into is possibly to compare our approach with other available methods of tracking a moving object for the robot arm and analyze its relative robustness and effectiveness.
           </p>
         </div>
       </div>
@@ -178,7 +203,7 @@
       <div class="row">
         <div class="col-md-12">
           <a id="timeline" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
-          <h1>Timeline</h1>
+          <h1>Time-line</h1>
           <ul class="timeline">
             <li>
               <a target="_blank" href="https://www.totoprayogo.com/#">Get familiarized</a>
