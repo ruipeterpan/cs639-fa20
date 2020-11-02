@@ -45,7 +45,7 @@ def stitch(images):
 
 
 def main():
-    images = readImgs()
+    images = readImgs("/home/haochen/Tools/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/vision_images")
     stitch(images)
 
 

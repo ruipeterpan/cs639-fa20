@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/haochen/catkin_ws/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/haochen/catkin_ws/src/beginner_tutorials/include/**",
+        "/home/haochen/catkin_ws/src/iiwa_stack/iiwa_hw/include/**",
+        "/home/haochen/catkin_ws/src/iiwa_stack/iiwa_ros/include/**",
+        "/home/haochen/catkin_ws/src/kinova-ros/kinova_driver/include/**",
+        "/home/haochen/catkin_ws/src/sawyer_simulator/sawyer_hardware_interface/include/**",
+        "/home/haochen/catkin_ws/src/sawyer_simulator/sawyer_sim_controllers/include/**",
+        "/home/haochen/catkin_ws/src/simExtROSInterface/include/**",
+        "/home/haochen/catkin_ws/src/universal_robot/ur_kinematics/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ]
+}
