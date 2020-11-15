@@ -3,3 +3,8 @@
 .idea
 
 *.pth
+
+*pycache*
+
+*icloud*
+
