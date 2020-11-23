@@ -12,7 +12,7 @@ Run `setup.sh` to install [detectron2](https://github.com/facebookresearch/detec
 ```python
 import detectron_predictor as pr
 p = pr.Predictor()
-p.transform('input.png')
+p.transform(img)  # img is a numpy array
 # output image is written to output.png by default
 ```
 

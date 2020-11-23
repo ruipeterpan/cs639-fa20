@@ -40,15 +40,21 @@ class Predictor():
     self.cfg.MODEL.DEVICE='cpu'  # use when gpu/cuda is not available
     self.predictor = DefaultPredictor(self.cfg)
 
-  def transform(self, imgName, dest="output.png"):
-    im = cv2.imread(imgName)
+  def transform(self, imgArray):
+    """Sends a numpy array through the predictor and outputs a numpy array of the same size
+
+    Args:
+        imgArray (numpy.ndarray): Image as a numpy array
+    """
+    # im = cv2.imread(imgName)
     timestamp = time.time()
-    outputs = self.predictor(im)
+    outputs = self.predictor(imgArray)
     print("Prediction took", round(time.time() - timestamp, 4), "seconds")
     v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0]), scale=1.2)
     out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
-    cv2.imwrite(dest, out.get_image()[:, :, ::-1])
-    # return out.get_image()[:, :, ::-1]  # if you want to move the imwrite functionality outside of this function
+    print(type(out.get_image()[:, :, ::-1]))
+    # cv2.imwrite(dest, out.get_image()[:, :, ::-1])
+    return out.get_image()[:, :, ::-1]  # if you want to move the imwrite functionality outside of this function
 
 
 
