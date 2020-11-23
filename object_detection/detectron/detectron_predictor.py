@@ -19,7 +19,7 @@ from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog, DatasetCatalog
 
-
+from timeit import default_timer as timer
 
 class Predictor():
   """
@@ -46,14 +46,16 @@ class Predictor():
     Args:
         imgArray (numpy.ndarray): Image as a numpy array
     """
-    # im = cv2.imread(imgName)
-    timestamp = time.time()
+    imgArray = cv2.imread("./test.png")
+    # print(imgArray.shape)
+    timestamp = timer()
     outputs = self.predictor(imgArray)
-    print("Prediction took", round(time.time() - timestamp, 4), "seconds")
-    v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0]), scale=1.2)
+    # print(outputs)
+    print("Prediction took", round(timer() - timestamp, 4), "seconds")
+    v = Visualizer(imgArray[:, :, ::-1], MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0]), scale=1.0)
     out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
-    print(type(out.get_image()[:, :, ::-1]))
-    # cv2.imwrite(dest, out.get_image()[:, :, ::-1])
+    # print(out.get_image()[:, :, ::-1])
+    cv2.imwrite("./test_output.png", out.get_image()[:, :, ::-1])
     return out.get_image()[:, :, ::-1]  # if you want to move the imwrite functionality outside of this function
 
 
