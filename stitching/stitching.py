@@ -1,16 +1,6 @@
 import cv2
 import os
 
-# stitcher = cv2.Stitcher_create(0)
-# foo = cv2.imread("images/my_l.png")
-# bar = cv2.imread("images/my_c.png")
-# lmao = cv2.imread("images/my_r.png")
-# result = stitcher.stitch((foo,bar,lmao))
-#
-# print(result[0])
-#
-# cv2.imwrite("images/result.jpg", result[1])
-
 
 def readImgs(directory=None):
     """
@@ -37,7 +27,8 @@ def stitch(images):
     stitcher = cv2.Stitcher_create(0)
     result = stitcher.stitch(images)
     if result[0]:
-        raise Exception("Process failed with error code", result[0], "--See https://stackoverflow.com/a/36645276/9601555 for more info")
+        raise Exception("Process failed with error code", result[0],
+                        "--See https://stackoverflow.com/a/36645276/9601555 for more info")
 
     cv2.imwrite("./images/result.jpg", result[1])
 

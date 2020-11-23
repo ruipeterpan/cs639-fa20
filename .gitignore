@@ -3,3 +3,9 @@
 .idea
 
 .vscode/
+
+*.pth
+
+*pycache*
+
+*icloud*
