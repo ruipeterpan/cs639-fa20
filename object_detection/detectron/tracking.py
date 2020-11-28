@@ -121,7 +121,7 @@ class Tracker:
                                         self.term_crit) 
     
         # Draw it on image 
-        pts = cv2.boxPoints(self.ret2) 
+        pts = cv2.boxPoints(self.ret2) # something like ((200.0, 472.0), (200.0, 228.0), (420.0, 228.0), (420.0, 472.0))
         
         # convert from floating 
         # to integer 
@@ -135,7 +135,7 @@ class Tracker:
                             (0, 255, 255),  
                             2)
         
-        return output
+        return pts, output
 
 
 
@@ -161,7 +161,7 @@ def main():
         # print(image_array)
         
         # transform image_array to output
-        output = tracker.track(image_array)
+        pts, output = tracker.track(image_array)
 
         # print(np.all(output == 0))
         rgb_list, h, w = array_to_list(output)
