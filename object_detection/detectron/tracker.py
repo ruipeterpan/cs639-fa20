@@ -16,24 +16,30 @@ class Tracker:
         self.isFirstIter = True
 
     def track(self, frame):
-        frame_float32 = np.float32(frame)
+        """Takes in an input frame and outputs a frame with the desired object
+        surronded with a tracker box
+        Args:
+            frame (numpy.ndarray): A frame of the video as np array 
+        Returns:
+            numpy.ndarray: An np array of the same size with the desired object tagged
+        """
+        frame = np.float32(frame)  # transform frame from int array to float32
 
         if self.isFirstIter:
             # initialization, set initial tracking region & calculate histogram
             self.isFirstIter = False
-            # self.x, self.y, self.width, self.height = cv2.selectROI(frame, False)
-            self.x, self.y, self.width, self.height = 100, 100, 100, 100
+
+            # initialize the track_window with random values
+            # initial random values needs to be somewhat close to the actual roi captured in the first frame
+            self.x, self.y, self.width, self.height = 500, 300, 200, 200
             self.track_window = (self.x, self.y, self.width, self.height)
 
-            # set up the Region of
-            # Interest for tracking
-            self.roi = frame[
-                self.y : self.y + self.height, self.x : self.x + self.width
-            ]
+            # self.roi = frame[y:y+height, x:x+width]
+            self.roi = cv2.imread("./imgs/template.png")
 
             # convert ROI from BGR to
             # HSV format
-            self.hsv_roi = cv2.cvtColor(frame_float32, cv2.COLOR_BGR2HSV)
+            self.hsv_roi = cv2.cvtColor(self.roi, cv2.COLOR_BGR2HSV)
 
             # perform masking operation
             self.mask = cv2.inRange(
@@ -51,24 +57,24 @@ class Tracker:
             # atleast 2 pt
             self.term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 15, 2)
 
-        _, self.frame1 = cv2.threshold(frame_float32, 180, 155, cv2.THRESH_TOZERO_INV)
+        _, frame1 = cv2.threshold(frame, 180, 155, cv2.THRESH_TOZERO_INV)
 
         # convert from BGR to HSV
         # format.
-        self.hsv = cv2.cvtColor(self.frame1, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame1, cv2.COLOR_BGR2HSV)
 
-        self.dst = cv2.calcBackProject([self.hsv], [0], self.roi_hist, [0, 180], 1)
+        dst = cv2.calcBackProject([hsv], [0], self.roi_hist, [0, 180], 1)
 
         # apply Camshift to get the
         # new location            self.dst, self.track_window, self.term_crit
 
-        self.ret2, self.track_window = cv2.CamShift(
-            self.dst, self.track_window, self.term_crit
+        ret2, self.track_window = cv2.CamShift(
+            dst, self.track_window, self.term_crit
         )
 
         # Draw it on image
         pts = cv2.boxPoints(
-            self.ret2
+            ret2
         )  # something like ((200.0, 472.0), (200.0, 228.0), (420.0, 228.0), (420.0, 472.0))
 
         # convert from floating
@@ -77,7 +83,7 @@ class Tracker:
 
         # Draw Tracking window on the
         # video frame.
-        output = cv2.polylines(frame_float32, [pts], True, (0, 255, 255), 10)
+        output = cv2.polylines(frame, [pts], True, (0, 255, 255), 10)
 
         cv2.imwrite('./test.png', output)
 
