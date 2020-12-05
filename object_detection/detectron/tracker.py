@@ -5,7 +5,7 @@ import os
 class Tracker:
     """Implementation for object tracker"""
 
-    def __init__(self, frame):
+    def __init__(self, firstFrame):
         """Initialize tracker members"""
         self.path_to_src = os.path.dirname(os.path.realpath(__file__))
         # read template from local image
