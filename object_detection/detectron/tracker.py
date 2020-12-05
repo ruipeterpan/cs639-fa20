@@ -5,12 +5,24 @@ import os
 class Tracker:
     """Implementation for object tracker"""
 
-    def __init__(self):
+    def __init__(self, frame):
         """Initialize tracker members"""
         self.path_to_src = os.path.dirname(os.path.realpath(__file__))
-        self.x, self.y, self.width, self.height = 300,180,50,120
-        self.track_window = (self.x, self.y, self.width, self.height)
+        # read template from local image
         self.roi = cv2.imread(self.path_to_src + "/imgs/template.png")
+        h, w = self.roi.shape[0], self.roi.shape[1]
+        # use template matching to find the initial position
+        method = eval('cv2.TM_CCOEFF')
+        res = cv2.matchTemplate(firstFrame,self.roi,method)
+        min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+        top_left = max_loc
+        bottom_right = (top_left[0] + w, top_left[1] + h)
+        self.x = top_left[0]
+        self.y = top_left[1]
+        self.width = w
+        self.height = h
+        self.track_window = (self.x, self.y, self.width, self.height)
+        
         self.hsv_roi = cv2.cvtColor(self.roi, cv2.COLOR_BGR2HSV) 
         self.mask = cv2.inRange(self.hsv_roi,  
                   np.array((0., 60., 40.)), 
