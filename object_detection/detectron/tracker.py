@@ -43,9 +43,7 @@ class Tracker:
             numpy.ndarray: An np array of the same size with the desired object tagged
         """
         frame = np.uint8(frame)  # transform frame from int array to float32
-        print(frame.dtype)
         # frame = frame.astype(np.float32)
-        print(frame.shape)
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         dst = cv2.calcBackProject([hsv],[0],self.roi_hist,[0,180],1)
         # apply meanshift to get the new location
