@@ -54,7 +54,7 @@ def main():
 
     while not rospy.is_shutdown():
         image_array = list_to_array(raw_image_msg.data, raw_image_msg.height, raw_image_msg.width)
-        # cv2.imwrite("./test.png", image_array)
+        # cv2.imwrite("./input.png", image_array)
         # print(image_array)
 
         # transform image_array to output

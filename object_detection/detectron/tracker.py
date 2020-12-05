@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 
 class Tracker:
     """Implementation for object tracker"""
@@ -14,6 +15,8 @@ class Tracker:
         self.roi_hist = None
         self.term_crit = None
         self.isFirstIter = True
+        self.path_to_src = os.path.dirname(os.path.realpath(__file__))
+
 
     def track(self, frame):
         """Takes in an input frame and outputs a frame with the desired object
@@ -35,8 +38,8 @@ class Tracker:
             self.track_window = (self.x, self.y, self.width, self.height)
 
             # self.roi = frame[y:y+height, x:x+width]
-            self.roi = cv2.imread("./imgs/template.png")
-
+            self.roi = cv2.imread(self.path_to_src + "/imgs/test.png")
+            # print(self.roi)
             # convert ROI from BGR to
             # HSV format
             self.hsv_roi = cv2.cvtColor(self.roi, cv2.COLOR_BGR2HSV)
