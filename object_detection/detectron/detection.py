@@ -51,11 +51,25 @@ def main():
 
     while raw_image_msg is None: continue
 
+    azure_addr = "137.135.81.74"
+
     while not rospy.is_shutdown():
         image_array = list_to_array(raw_image_msg.data, raw_image_msg.height, raw_image_msg.width)
-        cv2.imwrite("./test.png", image_array)
+
+        try:
+            cv2.imwrite("./input.png", image_array)
+            # upload to azure
+            os.system("scp -r ./input.png azureuser@{}:/home/azureuser".format(azure_addr))
+            # download from azure
+            os.system("scp -r azureuser@:/home/azureuser ./output.png".format(azure_addr)) 
+            output = cv2.imread("output.png")
+        except:
+            print("Something went wrong when communicating with azure, trying again")
+            continue
+
+
         # print(image_array)
-        output = p.transform(image_array)
+        # output = p.transform(image_array)
         # print(numpy.all(output == 0))
         rgb_list, h, w = array_to_list(output)
         # print(rgb_list)
