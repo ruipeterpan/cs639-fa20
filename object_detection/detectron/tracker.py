@@ -13,7 +13,7 @@ class Tracker:
         h, w = self.roi.shape[0], self.roi.shape[1]
         # use template matching to find the initial position
         method = eval('cv2.TM_CCOEFF')
-        res = cv2.matchTemplate(firstFrame,self.roi,method)
+        res = cv2.matchTemplate(np.uint8(firstFrame),self.roi,method)
         min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
         top_left = max_loc
         bottom_right = (top_left[0] + w, top_left[1] + h)
