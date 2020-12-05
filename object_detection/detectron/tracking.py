@@ -50,7 +50,8 @@ def main():
 
     while raw_image_msg is None: continue
 
-    tracker = Tracker()
+    image_array = list_to_array(raw_image_msg.data, raw_image_msg.height, raw_image_msg.width)
+    tracker = Tracker(image_array)
 
     while not rospy.is_shutdown():
         image_array = list_to_array(raw_image_msg.data, raw_image_msg.height, raw_image_msg.width)
