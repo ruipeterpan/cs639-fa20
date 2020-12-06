@@ -34,7 +34,7 @@ class Tracker:
         self.term_crit = ( cv2.TERM_CRITERIA_EPS |  
              cv2.TERM_CRITERIA_COUNT, 15, 2) 
 
-    def track(self, frame):
+    def track(self, frame, method="meanshift"):
         """Takes in an input frame and outputs a frame with the desired object
         surronded with a tracker box
         Args:
@@ -46,13 +46,25 @@ class Tracker:
         # frame = frame.astype(np.float32)
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         dst = cv2.calcBackProject([hsv],[0],self.roi_hist,[0,180],1)
-        # apply meanshift to get the new location
-        ret, self.track_window = cv2.meanShift(dst, self.track_window, self.term_crit)
-        # Draw it on image
-        self.x, self.y, self.width, self.height = self.track_window
-        img2 = cv2.rectangle(frame, (self.x,self.y), (self.x+self.width,self.y+self.height), 255,2)
-        # cv2.imshow('img2',img2)
-        cv2.imwrite('./test.png',img2)
-
-        return self.track_window, img2
+        if method == "meanshift":
+            # apply meanshift to get the new location
+            ret, self.track_window = cv2.meanShift(dst, self.track_window, self.term_crit)
+            # Draw it on image
+            self.x, self.y, self.width, self.height = self.track_window
+            img2 = cv2.rectangle(frame, (self.x,self.y), (self.x+self.width,self.y+self.height), 255,2)
+            # cv2.imshow('img2',img2)
+            cv2.imwrite('./test.png',img2)
+            return self.track_window, img2
+        elif method == "camshift":
+            # apply camshift to get the new location
+            ret, self.track_window = cv.CamShift(dst, self.track_window, self.term_crit)
+            # Draw it on image
+            self.x, self.y, self.width, self.height = self.track_window
+            pts = cv.boxPoints(ret)
+            pts = np.int0(pts)
+            img2 = cv.polylines(frame,[pts],True, 255,2)
+            cv2.imwrite('./test.png',img2)
+            return self.track_window, img2
+        else:
+            print("Wrong method input, should be meanshift or camshift")
 

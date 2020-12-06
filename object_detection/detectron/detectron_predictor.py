@@ -37,7 +37,7 @@ class Predictor():
     self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
     # Find a model from detectron2's model zoo. You can use the https://dl.fbaipublicfiles... url as well
     self.cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
-    self.cfg.MODEL.DEVICE='cpu'  # use when gpu/cuda is not available
+    self.cfg.MODEL.DEVICE='cuda'  # use cpu when gpu/cuda is not available
     self.predictor = DefaultPredictor(self.cfg)
 
   def transform(self, imgArray):
@@ -46,8 +46,6 @@ class Predictor():
     Args:
         imgArray (numpy.ndarray): Image as a numpy array
     """
-    imgArray = cv2.imread("./test.png")
-    # print(imgArray.shape)
     timestamp = timer()
     outputs = self.predictor(imgArray)
     # print(outputs)

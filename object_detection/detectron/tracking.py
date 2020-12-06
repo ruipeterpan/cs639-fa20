@@ -59,7 +59,8 @@ def main():
         # print(image_array)
 
         # transform image_array to output
-        pts, output = tracker.track(image_array)
+        pts, output = tracker.track(image_array, method="meanshift")
+        # pts, output = tracker.track(image_array, method="camshift")
         print(pts)
 
         # print(np.all(output == 0))
