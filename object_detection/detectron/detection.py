@@ -2,11 +2,14 @@
 
 import cv2
 import numpy
+import os
 import rospy
 import torch
 from sensor_msgs.msg import Image
 import detectron_predictor as pr
 from timeit import default_timer as timer
+
+path_to_src = os.path.dirname(os.path.realpath(__file__))
 
 def list_to_array(image_list, height, width):
     rgb_list = []
@@ -61,9 +64,10 @@ def main():
             # upload to azure
             os.system("scp -r ./input.png azureuser@{}:/home/azureuser".format(azure_addr))
             # download from azure
-            os.system("scp -r azureuser@:/home/azureuser ./output.png".format(azure_addr)) 
+            os.system("scp azureuser@{}:/home/azureuser/output.png ./".format(azure_addr)) 
             output = cv2.imread("output.png")
-        except:
+        except Exception as e:
+            print(e)
             print("Something went wrong when communicating with azure, trying again")
             continue
 
