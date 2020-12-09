@@ -81,30 +81,290 @@
       </div>
     </section>
 
-    <!-- About -->
+
+    <!-- Presentation Video -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-10 mx-auto">
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
           <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
-          <h1>Introduction</h1>
+          <h1>Presentation Video</h1>
+        </div>
+        <div class="col-sm-8 mx-auto"> 
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/AKTre4bvcjU" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Overview -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
+          <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Motivation</h1>
           <p>
-            Paragraph 1 of final webpage
+            The motivation for working on this project came from one of the team members who was working with the robotics 
+            lab on a research project involving cameras installed on robot arms. We thought it was a good idea to incorporate computer 
+            vision techniques with the robotics to enable real-time object detection and tracking, and explore the gap between 
+            computer vision algorithms and real world robotics applications. 
           </p>
         </div>
       </div>
     </div>
 
 
-<!--     <div class="container">
+    <!-- Overview -->
+    <div class="container">
       <div class="row">
-        <div class="col-sm-12">
-          <h1>Visitor Map</h1>
-          <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?d=F2TBlxWbs3r0SJixlLgyMRNaIqkp9peGGOY8alVvCD0&cl=ffffff&w=a"></script>
-          <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=f5f5f5&w=300&t=tt&d=F2TBlxWbs3r0SJixlLgyMRNaIqkp9peGGOY8alVvCD0&co=4194cf&ct=ffffff&cmo=ff0000&cmn=3dde3d'></script>
+        <div class="col-sm-10 mx-auto">
+          <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
+          <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Overview</h1>
+          <p>
+            In our project, we investigated 3 computer vision tasks alongside with 2 robot control methods.
+          </p>
+          <ol>
+            <li>
+              Computer Vision Tasks
+              <ol>
+                <li>Taking a Stable Panorama</li>
+                <li>Real-time Object Detection</li>
+                <li>Real-time Object Tracking</li>
+              </ol>
+            </li>
+            <li>
+              Robot Control Methods
+              <ol>
+                <li>Manual Control with a Joystick</li>
+                <li>Fully Autonomous Control</li>
+              </ol>
+            </li>
+          </ol>
+          <!-- <img src="./assets/images/" class="img-fluid" alt="Overview"> -->
         </div>
       </div>
-    </div> -->
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <h1>Setup Specifications</h1>
+          <p>
+            We did not have access to a real robot because of the COVID-19 pandemic, therefore all the implementations and experiments 
+            are carried out in a simulated environment by CoppeliaSim. The investigations were performed on Rethink Robotics Sawyer, 
+            a 7-DOF robot. We chose a robot with a high degree of freedom because it has a wider range of capabilities, e.g. spoon feeding, 
+            garbage classification, heart surgery, etc. 
+          </p>
+          <p>We used RelaxedIK, a motion planning platform, to calculate the motion of the robot arm.</p>
+          <p>The CPU we carried out the experiments on is AMD Ryzen 7 2700X Eight-Core Processor 3.70GHz, and we did not have access to a GPU.</p>
+        </div>
+        <div class="col-sm-8 mx-auto"> 
+          <div class="card mb-3">
+            <img src="./assets/images/pipeline.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">An overview of the pipeline</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <h1>Task 1: Taking a Stable Panorama</h1> 
+          <p>
+            For stitching the images, we used the OpenCV built-in image stitcher, which is well-modularized and easy to use.
+          </p>
+          <p>
+            We program the robot arm to rotate at a fixed speed autonomously to capture a stable 180 degree panorama. 
+            During the rotation, we used the camera attached to the end effector of the Sawyer robot to capture images with an interval of 0.3s.
+            See the video below for a glimpse of how the robot arm rotates.
+          </p>
+        </div>
+        <div class="col-sm-8 mx-auto"> 
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Di1ZLZX7gW4" allowfullscreen></iframe>
+          </div>
+        </div> 
+        <div class="col-sm-8 mx-auto"> 
+          <p></p>
+          <div class="card mb-3">
+            <img src="./assets/images/montage.JPEG" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">A montage of the frames captured by the robot arm</small></p>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <img src="./assets/images/panorama.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">Panorama generated by the stitcher</small></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-10 mx-auto">
+          <p>
+            We also asked some testers without prior experience to control the robot arm to take panoramas with an XBox controller. 
+            In order to test how intuitive this control method is, we did not provide any instructions such as the function of 
+            each button on the controller. It takes them about 5 minutes to learn the controls and take a stable panorama as the one above.
+          </p>
+          <p>
+            When some field robots explore unknown environments, it is useful to take a panorama of their surroundings to gather useful information.
+          </p>
+        </div>
+      </div>
+    </div> 
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <h1>Task 2: Real-time Object Detection</h1>
+          <p>
+            Our first attempt is based on PyTorch, torchvision, and the Mask-RCNN model. Mask-RCNN is a model that predicts both 
+            the bounding boxes and the class scores for potential objects in the image. The model was pre-trained on the COCO 
+            dataset and had an initial size of 178 MB. We fine-tuned the model for better human body recognition with the Penn-Fudan database. 
+            The dataset contained 170 images with 345 instances of pedestrians, and each image had a corresponding segmentation mask. 
+            Each frame captured by the camera is processed by the model for object detection.
+          </p>
+        </div>
+        <div class="col-sm-8 mx-auto"> 
+          <div class="card mb-3">
+            <img src="./assets/images/coco.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">An overview of the COCO dataset</small></p>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <img src="./assets/images/penn-fudan.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">An example of a segmentation mask in the Penn-Fudan database</small></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-10 mx-auto">
+          <p>
+            With only CPU, the latency for processing a single 50 KB image is around 4 seconds, which is pretty bad for our goal of real-time detection, 
+            where we expected millisecond-level turnaround time. So we switched to a new approach.
+          </p>
+          <p>
+            The first change we made was to switch to a new detection framework, Detectron 2. It is a state-of-the-art object detection 
+            framework by Facebook Research, powered by pytorch, and has a wider range of features and a faster speed. The latency 
+            improved but was still high on CPUs, so we looked into solutions using GPUs.
+          </p>
+          <p>
+            We did some benchmark experiments on Microsoft Azure and found that these two modifications combined 
+            resulted in a 200x performance increase with a final latency of 16 milliseconds, which is equivalent 
+            to 62 frames per second. These benchmarks proved the viability for our implementation to be used in real 
+            time. The state-of-art real-time object detection method on a Nao robot has about 0.1 s turnaround time 
+            with a single GPU. It has close performance to our method, and the variance is caused by image size, GPU etc.
+          </p>
+        </div>
+        <div class="col-sm-8 mx-auto"> 
+          <div class="card mb-3">
+            <img src="./assets/images/performance.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text"><small class="text-muted">A comparison of the latency for processing a 50KB image on different framework and hardware setups</small></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-10 mx-auto">
+          <p>
+            Since we could not install the robotics software on the azure remote machine, we did our implementation on CPU-only machines which 
+            led to about 2-second latency. Above is a demo showing our implementation of the object detection functionality.
+          </p>
+          <p>
+            Since the provided meshes in the simulation software have a relatively small number of polygons, and our model 
+            is trained based on real-world pictures, it fails to detect some objects in the experiment such as the poorly 
+            made human model. Therefore, we expect this method to work better in a real-world setting than in the simulator. 
+          </p>
+          <p>See below for a demo.</p>
+        </div>
+        <div class="col-sm-8 mx-auto"> 
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/yfeDekaDFyI" allowfullscreen></iframe>
+          </div>
+        </div> 
+      </div>
+    </div>    
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <h1>Task 3: Real-time Object Tracking</h1> 
+          <p>
+            We first used the mean shift algorithm implemented by OpenCV, which is a histogram based template tracking 
+            algorithm that iteratively moves the window until convergence. The major problem with this approach is that 
+            the window size and rotation are fixed, so it’s not robust to changes in the size and orientation of the object. 
+          </p>
+          <p>
+            Therefore, we switched to the Cam-Shift algorithm. It’s an algorithm based on mean shift, but also updates 
+            the size and orientation of the window upon convergence. This change successfully resolved the issue. 
+          </p>
+          <p>See below for a demo.</p>
+        </div>
+        <div class="col-sm-8 mx-auto"> 
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/r716JaBlOz4" allowfullscreen></iframe>
+          </div>
+        </div> 
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <h1>Conclusions</h1>
+          <p>Here is a list of future directions of our work:</p>
+          <ul>
+            <li>
+             Task 2 (Object detection): 
+              <ul>
+                <li>Integrating GPUs to reduce the latency and achieve real-time detection</li>
+                <li>Test in real-world settings</li>
+              </ul>
+            </li>
+            <li>
+              Task 3 (Object tracking):
+              <ul>
+                <li>Make the camera follow the object being tracked automatically</li>
+                <li>Improve the robustness to changes in scale and orientation</li>
+              </ul>
+            </li>
+          </ul>   
+          <p>Here are our conclusions:</p>      
+          <ol>
+            <li>Our implementation of the motion planning framework of high degree of freedom robot arms works well with computer vision tasks.</li>
+            <li>Different control methods work well for each vision task, but fully autonomous robots might be more useful to carry out real world tasks.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <h1>References</h1> 
+          <ul>
+            <li><a href="https://www.coppeliarobotics.com/">CoppeliaSim: the robot simulator we used in our experiments</a></li>
+            <li><a href="https://arxiv.org/abs/1512.03385">Deep Residual Learning for Image Recognition (ResNet)</a></li>
+            <li><a href="https://arxiv.org/abs/1512.03385">Mask R-CNN</a></li>
+            <li><a href="https://cocodataset.org/#home">The COCO Dataset</a></li>
+            <li><a href="https://www.cis.upenn.edu/~jshi/ped_html/">Penn-Fudan Database for Pedestrian Detection and Segmentation</a></li>
+            <li><a href="https://pytorch.org/tutorials/intermediate/torchvision_tutorial.html">Torchvision Object Detection Finetuning Tutorial</a></li>
+            <li><a href="https://docs.opencv.org/master/d1/d46/group__stitching.html">OpenCV: Image Stitching</a></li>
+            <li><a href="https://towardsdatascience.com/building-a-real-time-object-recognition-app-with-tensorflow-and-opencv-b7a2b4ebdc32">Real-time Object Detection with Tensorflow and OpenCV</a></li>
+            <li><a href="https://research.fb.com/wp-content/uploads/2019/12/4.-detectron2.pdf">Detectron2</a></li>
+            <li><a href="https://docs.opencv.org/master/d7/d00/tutorial_meanshift.html">OpenCV: Meanshift and Camshift</a></li>
+            <li><a href="http://opencv.jp/opencv-1.0.0_org/docs/papers/camshift.pdf">Computer Vision Face Tracking For Use in a Perceptual User Interface</a></li>
+            <li><a href="">Stuff</a></li>            
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <!-- Contacts -->
     <div class="jumbotron text-center" style="margin-bottom:0">
@@ -112,23 +372,9 @@
         <div class="col-sm-12">
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
           <a id="contacts" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
-          <h1>Contacts</h1>
-<!--           <p><a href="mailto:rpan33@wisc.edu" target="_blank">rpan33@wisc.edu</a></p>
-          <p><a href="sms:+16089600303">(+1) 608-960-0303</a> (US) <a href="sms:+8613564799996">(+86) 135-647-99996</a> (CN)</p>
-          <a href="mailto:rpan33@wisc.edu" class="smlinks"><i class="fas fa-envelope-square fa-2x"></i></a>
-          <a href="https://www.linkedin.com/in/ruipeterpan/"  class="smlinks" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
-          <a href="https://github.com/ruipeterpan" class="smlinks" target="_blank"><i class="fab fa-github-square fa-2x"></i></a>
-          <a href="https://www.facebook.com/rui.pan.1044" class="smlinks" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-          <a href="https://twitter.com/ruipeterpan" class="smlinks" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
-          <a href="https://www.instagram.com/ruipeterpan/" class="smlinks" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
-          <a href="https://www.snapchat.com/add/peterpan0726" class="smlinks" target="_blank"><i class="fab fa-snapchat-square fa-2x"></i></a> -->
-          <!-- TODO: 调用微信内置浏览器打开这个链接 -->
-<!--           <a href="https://u.wechat.com/EEVm_3AGp_hr3O22zRLFQO8" class="smlinks" target="_blank"><i class="fab fa-weixin fa-2x"></i></a>
-          <a href="sms:+16089600303" class="smlinks" target="_blank"><i class="fas fa-comment fa-2x"></i></a> -->
+          <!-- <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=f5f5f5&w=300&t=tt&d=F2TBlxWbs3r0SJixlLgyMRNaIqkp9peGGOY8alVvCD0&co=4194cf&ct=ffffff&cmo=ff0000&cmn=3dde3d'></script> -->
         </div>
       </div>
-<!--       <p>Designed and built by Rui Pan. Powered by Bootstrap.</p>
-      <p>Currently v2.0. Code licensed MIT. Feel free to fork this repo as a template!</p> -->
     </div>
 
     <!-- Optional JavaScript -->
