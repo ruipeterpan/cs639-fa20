@@ -23,11 +23,7 @@ from timeit import default_timer as timer
 
 class Predictor():
   """
-  Usage: 
-  import detectron_predictor as pr
-  p = pr.Predictor()
-  p.transform('input.png')
-  output image is written to output.png by default
+  Initializes a detectron2 predictor
   """
   def __init__(self):
     # create a detectron2 config and a detectron2 predictor to run inference on the image
@@ -37,7 +33,7 @@ class Predictor():
     self.cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # set threshold for this model
     # Find a model from detectron2's model zoo. You can use the https://dl.fbaipublicfiles... url as well
     self.cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
-    self.cfg.MODEL.DEVICE='cuda'  # use cpu when gpu/cuda is not available
+    self.cfg.MODEL.DEVICE='cpu'  # use cpu when gpu/cuda is not available; otherwise use "cuda"
     self.predictor = DefaultPredictor(self.cfg)
 
   def transform(self, imgArray):
@@ -48,13 +44,11 @@ class Predictor():
     """
     timestamp = timer()
     outputs = self.predictor(imgArray)
-    # print(outputs)
     print("Prediction took", round(timer() - timestamp, 4), "seconds")
     v = Visualizer(imgArray[:, :, ::-1], MetadataCatalog.get(self.cfg.DATASETS.TRAIN[0]), scale=1.0)
     out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
-    # print(out.get_image()[:, :, ::-1])
     cv2.imwrite("./test_output.png", out.get_image()[:, :, ::-1])
-    return out.get_image()[:, :, ::-1]  # if you want to move the imwrite functionality outside of this function
+    return out.get_image()[:, :, ::-1]
 
 
 

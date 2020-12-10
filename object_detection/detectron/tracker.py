@@ -25,14 +25,14 @@ class Tracker:
         
         self.hsv_roi = cv2.cvtColor(self.roi, cv2.COLOR_BGR2HSV) 
         self.mask = cv2.inRange(self.hsv_roi,  
-                  np.array((0., 60., 40.)), 
-                  np.array((180., 255., 255))) 
+                                np.array((0., 60., 40.)), 
+                                np.array((180., 255., 255))) 
         self.roi_hist = cv2.calcHist([self.hsv_roi],  
-                       [0],self.mask, 
-                       [180],  
-                       [0, 180]) 
+                                    [0],self.mask, 
+                                    [180],  
+                                    [0, 180]) 
         self.term_crit = ( cv2.TERM_CRITERIA_EPS |  
-             cv2.TERM_CRITERIA_COUNT, 15, 2) 
+                        cv2.TERM_CRITERIA_COUNT, 15, 2) 
 
     def track(self, frame, method="meanshift"):
         """Takes in an input frame and outputs a frame with the desired object
