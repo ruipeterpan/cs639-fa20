@@ -56,13 +56,28 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#motivation">Motivation</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="#">Section 1</a>
+            <a class="nav-link" href="#overview">Overview</a>
           </li>
           <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
-            <a class="nav-link" href="#">Section 2</a>
+            <a class="nav-link" href="#specifications">Specifications</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#task1">Task 1</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#task2">Task 2</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#task3">Task 3</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#conclusions">Conclusions</a>
+          </li>
+          <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <a class="nav-link" href="#references">References</a>
           </li>
         </ul>
       </div>
@@ -87,7 +102,7 @@
       <div class="row">
         <div class="col-sm-10 mx-auto">
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
-          <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <!-- <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a> -->
           <h1>Presentation Video</h1>
         </div>
         <div class="col-sm-8 mx-auto"> 
@@ -104,7 +119,7 @@
       <div class="row">
         <div class="col-sm-10 mx-auto">
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
-          <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <a id="motivation" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Motivation</h1>
           <p>
             The motivation for working on this project came from one of the team members who was working with the robotics 
@@ -122,7 +137,7 @@
       <div class="row">
         <div class="col-sm-10 mx-auto">
           <!-- Fake anchor, otherwise the fixed navbar on the top would cover the title -->
-          <a id="about" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <a id="overview" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Overview</h1>
           <p>
             In our project, we investigated 3 computer vision tasks alongside with 2 robot control methods.
@@ -152,6 +167,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 mx-auto">
+          <a id="specifications" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Setup Specifications</h1>
           <p>
             We did not have access to a real robot because of the COVID-19 pandemic, therefore all the implementations and experiments 
@@ -176,6 +192,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 mx-auto">
+          <a id="task1" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Task 1: Taking a Stable Panorama</h1> 
           <p>
             For stitching the images, we used the OpenCV built-in image stitcher, which is well-modularized and easy to use.
@@ -222,6 +239,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 mx-auto">
+          <a id="task2" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Task 2: Real-time Object Detection</h1>
           <p>
             Our first attempt is based on PyTorch, torchvision, and the Mask-RCNN model. Mask-RCNN is a model that predicts both 
@@ -294,6 +312,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 mx-auto">
+          <a id="task3" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Task 3: Real-time Object Tracking</h1> 
           <p>
             We first used the mean shift algorithm implemented by OpenCV, which is a histogram based template tracking 
@@ -317,11 +336,12 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 mx-auto">
+          <a id="conclusions" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Conclusions</h1>
           <p>Here is a list of future directions of our work:</p>
           <ul>
             <li>
-             Task 2 (Object detection): 
+              Task 2 (Object detection): 
               <ul>
                 <li>Integrating GPUs to reduce the latency and achieve real-time detection</li>
                 <li>Test in real-world settings</li>
@@ -347,6 +367,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-10 mx-auto">
+          <a id="references" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>References</h1> 
           <ul>
             <li><a href="https://pytorch.org/">PyTorch</a></li>  
