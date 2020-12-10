@@ -1,4 +1,4 @@
-## /Tracking
+# Tracking
 
 We encapsulated both algorithms (meanshift & camshift) inside the class `Tracker` in `tracker.py`.
 
@@ -6,7 +6,7 @@ On initialization, `Tracker` reads in a local template image for histogram calcu
 
 When `track()` is invoked, it takes in an input image as a `numpy.ndarray`, chooses a tracking algorithm to run, and returns the image and the `(x, y, width, height)` coordinates of the bounding box.
 
-### Usage
+## Usage
 
 ```python
 from tracker import Tracker  # before this, modify the path to the template image in Tracker
