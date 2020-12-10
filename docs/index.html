@@ -26,6 +26,10 @@
       .smlinks:hover {
           color: rgb(7, 107, 255);
       }
+
+      .container {
+        margin-top: 15px;
+      }
       /*html, body { scroll-behavior:smooth; }*/
       /* Conflicts with "collapse nav bar on click" */
     </style>
@@ -122,10 +126,14 @@
           <a id="motivation" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Motivation</h1>
           <p>
-            The motivation for working on this project came from one of the team members who was working with the robotics 
-            lab on a research project involving cameras installed on robot arms. We thought it was a good idea to incorporate computer 
-            vision techniques with the robotics to enable real-time object detection and tracking, and explore the gap between 
-            computer vision algorithms and real world robotics applications. 
+            The idea of working on this project came from one of our team members who has been working in our school's robotics 
+            lab. We thought it was a good idea to explore the gap between computer vision algorithms and real world robotics applications. 
+            It is usually hard to apply a theory to real-world applications, so we are curious about how hard it is in the case of 
+            computer vision and robotics. After studying the literature in the intersection of vision and robotics, we find that vision 
+            has been widely used on robots such as drones, autonoumous cars, and social robots. There are not many interests on how to 
+            intergrate vision algorithms with high degree of freedom robot arms. But given that these robot arms have a wide range of capbilities 
+            such as spoon feeding, garbage classification, heart surgery, we feel that it can be very helpful to investigate the compability of 
+            vision plugins on this kind of robots.
           </p>
         </div>
       </div>
@@ -142,7 +150,7 @@
           <p>
             In our project, we investigated 3 computer vision tasks alongside with 2 robot control methods.
           </p>
-          <ol>
+          <ul>
             <li>
               Computer Vision Tasks
               <ol>
@@ -158,7 +166,7 @@
                 <li>Fully Autonomous Control</li>
               </ol>
             </li>
-          </ol>
+          </ul>
           <!-- <img src="./assets/images/" class="img-fluid" alt="Overview"> -->
         </div>
       </div>
@@ -170,13 +178,16 @@
           <a id="specifications" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Setup Specifications</h1>
           <p>
-            We did not have access to a real robot because of the COVID-19 pandemic, therefore all the implementations and experiments 
-            are carried out in a simulated environment by CoppeliaSim. The investigations were performed on Rethink Robotics Sawyer, 
-            a 7-DOF robot. We chose a robot with a high degree of freedom because it has a wider range of capabilities, e.g. spoon feeding, 
-            garbage classification, heart surgery, etc. 
+            We did not have access to a real robot because of the COVID-19 pandemic, so all the implementations and experiments 
+            are carried out in a simulated environment in CoppeliaSim. The simulator provides a mature physics engine which simulates
+            gravity and friction in a realistic manner.
           </p>
-          <p>We used RelaxedIK, a motion planning platform, to calculate the motion of the robot arm.</p>
-          <p>The CPU we carried out the experiments on is AMD Ryzen 7 2700X Eight-Core Processor 3.70GHz, and we did not have access to a GPU.</p>
+          <p>We used Rethink Robotics Sawyer, a 7-DOF robot.</p>
+          <p>
+            We used RelaxedIK, a motion planning platform, to calculate the motion of the robot arm. RelaxedIK maps a 6-DOF pose goal 
+            (position + rotation) to a robot configuration in a fast and accurate way.
+          </p>
+          <p>The CPU we used for the experiments is an AMD Ryzen 7 2700X Eight-Core Processor 3.70GHz, and we did not have access to a GPU.</p>
         </div>
         <div class="col-sm-8 mx-auto"> 
           <div class="card mb-3">
@@ -230,7 +241,7 @@
             each button on the controller. It takes them about 5 minutes to learn the controls and take a stable panorama as the one above.
           </p>
           <p>
-            When some field robots explore unknown environments, it is useful to take a panorama of their surroundings to gather useful information.
+            In terms of potential applications, when some field robots explore unknown environments, it is useful to take a panorama of their surroundings to gather useful information.
           </p>
         </div>
       </div>
@@ -278,7 +289,7 @@
             resulted in a 200x performance increase with a final latency of 16 milliseconds, which is equivalent 
             to 62 frames per second. These benchmarks proved the viability for our implementation to be used in real 
             time. The state-of-art real-time object detection method on a Nao robot has about 0.1 s turnaround time 
-            with a single GPU. It has close performance to our method, and the variance is caused by image size, GPU etc.
+            with a single GPU. It has close performance to our method, and the variance is caused by image size, GPU, etc.
           </p>
         </div>
         <div class="col-sm-8 mx-auto"> 
@@ -301,11 +312,11 @@
           </p>
           <p>See below for a demo.</p>
         </div>
-        <div class="col-sm-8 mx-auto"> 
+        <div class="col-sm-8 mx-auto" style="padding-bottom: 15px;"> 
           <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/yfeDekaDFyI" allowfullscreen></iframe>
           </div>
-        </div> 
+        </div>
       </div>
     </div>    
     
@@ -323,9 +334,13 @@
             Therefore, we switched to the Cam-Shift algorithm. It’s an algorithm based on mean shift, but also updates 
             the size and orientation of the window upon convergence. This change successfully resolved the issue. 
           </p>
-          <p>See below for a demo.</p>
+          <p>
+            In the demo below, we used the XBox game controller to control the robot in this demo. The tracking window size 
+            is constantly changing to fit the human figure. And as you can see, our method is robust to changes in orientation 
+            and scale.
+          </p>
         </div>
-        <div class="col-sm-8 mx-auto"> 
+        <div class="col-sm-8 mx-auto" style="padding-bottom: 15px;"> 
           <div class="embed-responsive embed-responsive-16by9">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/r716JaBlOz4" allowfullscreen></iframe>
           </div>
@@ -338,7 +353,19 @@
         <div class="col-sm-10 mx-auto">
           <a id="conclusions" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
           <h1>Conclusions</h1>
-          <p>Here is a list of future directions of our work:</p>
+          <ol>
+            <li>Our implementation of these three computer vision tasks works well with a high degree of freedom robot arm.</li>
+            <li>Different control methods work well for each vision task, but fully autonomous robots might be more useful to in real-world settings.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 mx-auto">
+          <a id="conclusions" style=" position: relative;top: -60px;display: block;height: 0;overflow: hidden;"></a>
+          <h1>Future Implications</h1>
           <ul>
             <li>
               Task 2 (Object detection): 
@@ -356,11 +383,6 @@
               </ul>
             </li>
           </ul>   
-          <p>Here are our conclusions:</p>      
-          <ol>
-            <li>Our implementation of the motion planning framework of high degree of freedom robot arms works well with computer vision tasks.</li>
-            <li>Different control methods work well for each vision task, but fully autonomous robots might be more useful to carry out real world tasks.</li>
-          </ol>
         </div>
       </div>
     </div>
